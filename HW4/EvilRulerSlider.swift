@@ -1,8 +1,16 @@
+//
+//  EvilRulerSlider.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/12.
+//
+
+
 import SwiftUI
 
 struct EvilRulerSlider: View {
     // 0 到 5，共 6 個刻度
-    @State private var level: Int = 0
+    @Binding var level: Int
     
     // 定義每一階的難度標籤
     let difficultyLabels = ["新手散步", "微流汗", "有點挑戰", "痛苦邊緣", "極度折磨", "萬劫不復深淵"]
@@ -60,9 +68,9 @@ struct EvilRulerSlider: View {
                     
                     ZStack(alignment: .top) {
                         // 1. 尺的軌道底色
-                        RoundedRectangle(cornerRadius: 10)
+                        Rectangle()
                             .fill(Color.gray.opacity(0.2))
-                            .frame(width: 40, height: trackHeight)
+                            .frame(width: 10, height: trackHeight)
                             .position(x: geo.size.width / 2, y: geo.size.height / 2)
                         
                         // 2. 畫上 6 個刻度線
@@ -72,7 +80,7 @@ struct EvilRulerSlider: View {
                             
                             Rectangle()
                                 .fill(i <= level ? difficultyColors[i] : Color.gray.opacity(0.5))
-                                .frame(width: 24, height: 3)
+                                .frame(width: 40, height: 3)
                                 .position(x: geo.size.width / 2 - 8, y: yPos) // 刻度偏左，像尺一樣
                         }
                         
@@ -120,8 +128,4 @@ struct EvilRulerSlider: View {
             .padding()
         }
     }
-}
-
-#Preview {
-    EvilRulerSlider()
 }

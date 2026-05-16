@@ -1,15 +1,24 @@
+//
+//  RollingButton.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/9.
+//
+import SwiftUI
+
 struct RollingButton: View {
-    let color: Color
-    let action: () -> Void
+    @Environment(PigGame.self) var game
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            game.rollDice()
+        } label: {
             ZStack {
                 Circle()
                     .fill(.white)
                     .frame(width: 360)
                 Circle()
-                    .fill(color)
+                    .fill(game.currentPlayer.color)
                     .frame(width: 330)
 
                 Text("Roll!!!")
@@ -20,5 +29,6 @@ struct RollingButton: View {
                     .rotationEffect(.degrees(-45))
             }
         }
+        .disabled(game.currentPlayer.isComputer)
     }
 }

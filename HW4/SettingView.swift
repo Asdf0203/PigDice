@@ -1,7 +1,18 @@
+//
+//  SettingView.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/9.
+//
+import SwiftUI
+
 struct SettingView: View {
     @Binding var isSettingOn: Bool
-    @Bindable var gameSettings: GameSettings
+    
+    @Environment(PigGame.self) var game
+    
     var body: some View {
+        @Bindable var gameSettings = game.gameSettings
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.white)
@@ -13,25 +24,25 @@ struct SettingView: View {
                 Text("Player Number")
                     .frame(alignment: .leading)
                 HStack {
-                    IntSlider(value: $gameSettings.playerNumber, range: 1...4)
+                    IntSlider(value: $gameSettings.playerNumber, range: 1...2)
                     Text("\(gameSettings.playerNumber)")
                 }
                 Text("Difficulty")
                 HStack {
-                    IntSlider(value: $gameSettings.difficulty, range: 1...2)
+                    IntSlider(value: $gameSettings.difficulty, range: 1...6)
                     Text("\(gameSettings.difficulty)")
                 }
                 Text("Winning Point")
                 HStack {
                     IntSlider(
-                        value: $gameSettings.winningPoint,
+                        value: $gameSettings.winningScore,
                         range: 10...1000
                     )
-                    Text("\(gameSettings.winningPoint)")
+                    Text("\(gameSettings.winningScore)")
                 }
                 Text("Dice Amount")
                 HStack {
-                    IntSlider(value: $gameSettings.diceAmount, range: 1...4)
+                    IntSlider(value: $gameSettings.diceAmount, range: 1...2)
                     Text("\(gameSettings.diceAmount)")
                 }
                 Spacer()

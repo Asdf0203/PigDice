@@ -1,3 +1,11 @@
+//
+//  GearButton.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/9.
+//
+import SwiftUI
+
 struct GearButton: View {
     let action: () -> Void
 

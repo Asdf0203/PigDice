@@ -1,3 +1,11 @@
+//
+//  CartoonOutlineModifier.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/12.
+//
+
+
 import SwiftUI
 
 // ==========================================
@@ -127,7 +135,7 @@ struct CartoonDemonHead: View {
 // ==========================================
 
 struct StickerEvilSlider: View {
-    @State private var level: Int = 0
+    @Binding var level: Int
     
     // 數據定義
     let levels = [
@@ -285,8 +293,4 @@ extension Color {
         }
         self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: Double(a) / 255)
     }
-}
-
-#Preview {
-    StickerEvilSlider()
 }

@@ -1,41 +1,27 @@
-struct playerView: View {
-    @Binding var dicePoint: Int
-    @Binding var player1Point: Int
-    @Binding var player2Point: Int
-    var turn: Color
-    @State var addOnPoint: Int = 0
+//
+//  playerView.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/5.
+//
+import SwiftUI
 
+struct PlayerView: View {
+    @Environment(PigGame.self) var game
+    
     var body: some View {
-        if addOnPoint != 0 {
-            Text("+\(addOnPoint)")
-                .font(.largeTitle.scaled(by: 2))
-                .bold()
-                .foregroundStyle(turn)
-                .offset(y: 150)
-                .onTapGesture {
-                    player1Point += addOnPoint
-                    addOnPoint = 0
-                }
-        }
         ZStack {
-            Circle()
-                .fill(.white)
-                .frame(width: 360)
-                .offset(y: 440)
-            Circle()
-                .fill(turn)
-                .frame(width: 330)
-                .offset(y: 440)
 
-            Text("Roll!!!")
-                .font(.largeTitle.scaled(by: 1.5))
-                .bold()
-                .foregroundStyle(.white)
-                .offset(y: 360)
+            DiceView()
+            
+            AddOnButton()
+                .offset(y: 150)
+                .opacity(game.addOnScore == 0 ? 0 : 1)
+
+            RollingButton()
+                .buttonStyle(.shrink)
+                .offset(x: 190, y: 400)
         }
-        .onTapGesture {
-            dicePoint = .random(in: 1...6)
-            addOnPoint += dicePoint
-        }
+        .rotationEffect(game.currentPlayer.position.rotation)
     }
 }

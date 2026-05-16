@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct HW4App: App {
+    @State private var game = PigGame()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(game)
         }
     }
 }

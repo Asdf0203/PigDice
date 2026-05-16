@@ -1,4 +1,10 @@
-
+//
+//  WinningView.swift
+//  HW4
+//
+//  Created by 許哲浚 on 2026/5/14.
+//
+import SwiftUI
 
 struct WinningView: View {
     @Environment(PigGame.self) var game
